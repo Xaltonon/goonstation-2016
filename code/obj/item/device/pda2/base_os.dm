@@ -109,7 +109,8 @@
 							. += " | <a href='byond://?src=\ref[src];note_func=save'>Save</a>"
 							. += " | <a href='byond://?src=\ref[src];note_func=switchmenu'>Load</a><br>"
 
-						. += src.note
+						var/t = replacetext(src.note, "\n", "<br>")
+						. += t
 					else
 						. += " <a href='byond://?src=\ref[src];note_func=switchmenu'>Back</a>"
 						if((!src.note_folder) || !(src.note_folder.holder in src.master))
@@ -296,9 +297,7 @@
 
 						if(!(src.holder in src.master))
 							return
-						t = replacetext(t, "\n", "|||")
 						t = copytext(adminscrub(t), 1, MAX_MESSAGE_LEN)
-						t = replacetext(t, "|||", "<br>")
 						src.note = t
 
 
